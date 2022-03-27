@@ -13,8 +13,8 @@ More grow list and depth it's became hard to not missclick, and close context me
 nested nature of context menu is flexible for organization, but 'Hover-to-open' with big nested hierarchies became unusable
 # Solution
 Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
-<br>I. Exposed in shader graph as Texture2D
-<br>II. faster iteration with no need to switch to Photoshop, rearrange windows, save file, reimport
+<br>I. missclick is doesn't matter
+<br>II. no need to Hover-to-navigate
 
 # Summary
 - UPM package
