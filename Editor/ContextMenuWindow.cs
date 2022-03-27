@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -9,6 +10,7 @@ namespace Editor
 {
     public class ContextMenuWindow : EditorWindow
     {
+        private const bool LOGS = true;
         private const string TYPE_NAME = nameof(ContextMenuWindow);
         private const string TAB = "    ";
 
@@ -20,7 +22,7 @@ namespace Editor
             public string ValueLower;
             public bool IsExpanded;
             public int Depth;
-            public NestedString Parent;
+            [NonSerialized] public NestedString Parent;
             public List<NestedString> Children = new List<NestedString>();
             public NestedString(string value)
             {
@@ -49,6 +51,7 @@ namespace Editor
 
         void OnEnable()
         {
+            Debug.Log("OnEnable");
             LoadSettings();
 
             titleContent = new GUIContent("Create Context Menu");
@@ -74,7 +77,7 @@ namespace Editor
         }
 
         private void DrawSettings()
-        { 
+        {
             DrawLine();
 
             EditorGUI.BeginChangeCheck();
@@ -119,7 +122,7 @@ namespace Editor
 
             stringData = stringData.Substring(index, length2);
 
-            //Debug.Log(stringData);
+            if (LOGS) Debug.Log(stringData);
 
             Data.Depth = 1;
             Data.Children.Clear();
@@ -145,8 +148,7 @@ namespace Editor
                 current.Name = current.Value;
                 current.Depth = newDepth;
 
-                // Debug.Log($"current '{current.Name}'");
-                // Debug.Log($"new {newDepth} | last {lastDepth} | previous {previous.Depth}");
+                if (LOGS) Debug.Log($"[ {current.Name} ]");
 
 
                 if (newDepth == previous.Depth)
@@ -157,7 +159,7 @@ namespace Editor
                     current.Parent = lastParent;
                     lastParent.Children.Add(current);
 
-                    //Debug.Log($"add child 1 '{lastParent.Name}' + '{current.Name}'");
+                    if (LOGS) Debug.Log($"add child 1 '{lastParent.Name}' + '{current.Name}'");
                 }
 
                 if (newDepth != previous.Depth)
@@ -168,7 +170,7 @@ namespace Editor
 
                         while (current.Depth - temp.Depth != 1)
                         {
-                            Debug.Log($"temp '{temp.Name}' | temp {temp.Depth} | current {current.Depth}");
+                            if (LOGS) Debug.Log($"temp '{temp.Name}' | temp {temp.Depth} | current {current.Depth}");
 
                             if (temp.Parent == null) break;
 
@@ -177,7 +179,13 @@ namespace Editor
 
                         lastParent = temp;
 
-                        Debug.Log($"new last parent 2 '{temp.Name}'");
+                        if (LOGS) Debug.Log($"new last parent 2 '{temp.Name}'");
+
+                        current.Value = lastParent.Value + '/' + current.Value;
+                        current.ValueLower = current.Value.ToLowerInvariant();
+                        current.Parent = lastParent;
+                        lastParent.Children.Add(current);
+                        if (LOGS) Debug.Log($"add child 2 '{lastParent.Name}' + '{current.Name}'");
                     }
                     else
                     {
@@ -187,7 +195,7 @@ namespace Editor
                         previous.Children.Add(current);
                         lastParent = previous;
 
-                        //Debug.Log($"add child 2 '{previous.Name}' + '{current.Name}'");
+                        if (LOGS) Debug.Log($"add child 1 '{previous.Name}' + '{current.Name}'");
                     }
                 }
 
@@ -222,8 +230,8 @@ namespace Editor
 
         private void Draw(NestedString target, ref int index)
         {
-            if (target.Children.Count ==0 && !string.IsNullOrEmpty(_filterLower) && !target.ValueLower.Contains(_filterLower)) return;
-                
+            if (target.Children.Count == 0 && !string.IsNullOrEmpty(_filterLower) && !target.ValueLower.Contains(_filterLower)) return;
+
             GUILayout.BeginHorizontal(GUILayout.MaxWidth(position.width));
             GUILayout.Space((target.Depth - 1) * Indent);
 
@@ -231,7 +239,7 @@ namespace Editor
             {
                 if (UseExpandable)
                 {
-                    if (GUILayout.Button($"{(target.IsExpanded?'-':'+')} {target.Name}","label", GUILayout.Height(ButtonSize.y), GUILayout.Width(ButtonSize.x)))
+                    if (GUILayout.Button($"{(target.IsExpanded ? '-' : '+')} {target.Name}", "label", GUILayout.Height(ButtonSize.y), GUILayout.Width(ButtonSize.x)))
                     {
                         target.IsExpanded = !target.IsExpanded;
                     }
@@ -264,7 +272,7 @@ namespace Editor
                     {
                         Selection.activeObject = GetSelectedPathOrFallback();
                         EditorApplication.ExecuteMenuItem(target.Value);
-                    } 
+                    }
                 }
             }
 
