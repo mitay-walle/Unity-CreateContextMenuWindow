@@ -18,6 +18,8 @@ Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
 
 # Summary
 - UPM package
+- search
+- customize style once, saved in EditorPrefs
 - open with Windows/Create Context Menu Window
 - scrollview for big amount of items, (saves its state!)
 - change Indent and button size to customize window for your needs
