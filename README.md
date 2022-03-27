@@ -2,8 +2,7 @@
 
 Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
 
-![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_0.png)
-![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_1.png)
+![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_0.png)![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_1.png)![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_2.png)
 
 # Problem
 
