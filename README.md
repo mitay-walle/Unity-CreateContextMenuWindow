@@ -14,8 +14,9 @@ Display all menu items 'File/..' 'Edit/..' 'CustoMenuitem/..' etc same way
 More grow list and depth it's became hard to not missclick, and close context menu, start over and over again
 ## II. Context menu nested navigation
 nested nature of context menu is flexible for organization, but 'Hover-to-open' with big nested hierarchies became unusable
+
 # Solution
-Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
+Display menu items as EditorWindow with hierarchy buttons
 <br>I. missclick is doesn't matter
 <br>II. no need to Hover-to-navigate
 
