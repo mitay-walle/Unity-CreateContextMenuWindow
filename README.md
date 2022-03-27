@@ -3,7 +3,7 @@
 Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
 ![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_0.png)
 - Menu Item Window
-Display all menu items 'File/..' 'Edit/..' 'CustoMenuitem/..' etc same way
+Display all menu items 'File/..' 'Edit/..' 'CustomMenuitem/..' etc same way
 ![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_3.png)
 - search example 
 <br>![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_2.png)
@@ -24,7 +24,7 @@ Display menu items as EditorWindow with hierarchy buttons
 - UPM package
 - search
 - Create Context Menu Window for 'Assets/Create/..'
-- Menu Item Window for all 'File/..' 'Edit/..' 'CustoMenuitem/..'
+- Menu Item Window for all 'File/..' 'Edit/..' 'CustomMenuitem/..'
 - customize style once, saved in EditorPrefs
 - open with Windows/Create Context Menu Window
 - scrollview for big amount of items, (saves its state!)
