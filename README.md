@@ -1,4 +1,8 @@
 # Unity Menu Item Windows
+# Abandoned
+
+Use ['Quick Seach me:'](https://docs.unity3d.com/Packages/com.unity.quicksearch@2.0/manual/search-menu.html) instead
+
 - Create Context Menu Window
 Display 'Assets/Create/...' items as EditorWindow with hierarchy buttons
 ![alt text](https://github.com/mitay-walle/Unity-CreateContextMenuWindow/blob/master/Documentation/preview_0.png)
